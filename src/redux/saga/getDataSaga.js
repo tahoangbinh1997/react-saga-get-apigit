@@ -7,7 +7,7 @@ const path = 'products';
 
 const delay = (ms) => new Promise(res => setTimeout(res, ms))
 
-function* getDataFunction(action) {
+function* getDataFunction(actions) {
     yield delay(2500)
     try {
         const data = yield services.apiData
@@ -18,6 +18,7 @@ function* getDataFunction(action) {
             .catch((error) => {
                 return Promise.reject(error)
             });
+        console.log('Data: ', data);
         yield put({type: types.GET_DATA_SUCCESS, payload: {data: data}});
     }
     catch (error) {

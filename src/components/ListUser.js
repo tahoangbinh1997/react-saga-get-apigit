@@ -5,11 +5,10 @@ const ListUser = ({delUser, listUser}) => {
     let thead = Array.from([]);
     let tbody = Array.from([]);
 
-    function _onDeleteUser(userId) {
-        delUser(userId)
-    }
-
     useMemo(() => {
+        const _onDeleteUser = (userId) => {
+            delUser(userId)
+        }
         //tạo 1 mảng object tableUser lấy dữ liệu từ việc map data của listUser.data và định nghĩa các trường được phép hiển thị
         let tableUser = Array.from([]);
         tableUser = data.map((item) => ({
@@ -44,7 +43,7 @@ const ListUser = ({delUser, listUser}) => {
                 )
             }
         }
-    }, [data, thead, tbody])
+    }, [data, thead, tbody, delUser])
     return (
         <>
             {error && (<h3 className="error">{error}</h3>)}
